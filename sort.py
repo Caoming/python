@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 import numpy as np
+import sys
 
 sorts = [1, 8, 9, 23, 54, 123, 45, 23, 4, 6]
 print(len(sorts))
@@ -43,9 +44,11 @@ def selectionSort(arr):
 
 
 def merge(arr, p1, r1, p2, r2):
-    temp = []
-    i, j, z = 0
-    while(i < (r1 - p1 + 1) and j < (r2 - p2 + 1)):
+    temp = np.empty(len(arr))
+    i=0
+    j=0
+    z = 0
+    while(i <= (r1 - p1) and j <= (r2 - p2)):
         if(arr[i] < arr[j]):
             temp[z] = arr[i]
             i += 1
@@ -67,7 +70,7 @@ def merge(arr, p1, r1, p2, r2):
             i += 1
             z += 1
     for k in range(r2 - p1):
-        arr[p + k] = temp[k]
+        arr[p1 + k] = temp[k]
 
 
 # 归并排序
@@ -76,7 +79,7 @@ def mergeSort(arr, p, r):
     if(p >= r):
         return
 
-    q = (p + r) / 2
+    q = (p + r) // 2
     mergeSort(arr, p, q)
     mergeSort(arr, q + 1, r)
 
@@ -87,7 +90,7 @@ def mergeSort(arr, p, r):
 print("归并排序")
 sorts = [1, 8, 9, 23, 54, 123, 45, 23, 4, 6]
 print("插入排序后的数据为")
-mergeSort(sorts, 0, 9)
+mergeSort(sorts, 0, 10)
 for i in range(n):
     print("%d" % sorts[i])
 
